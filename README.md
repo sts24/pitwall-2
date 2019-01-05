@@ -4,6 +4,9 @@
 
 I am a big Formula 1 fan (yes, I am also an American, which nobody knows about F1 here) and I wanted to make up a personal project to learn more about Vue and making a reactive single page app. While the functionality is fully established, I plan on added some polish to UI over time.
 
+Visit my portfolio site: [smithscott.net](https://www.smithscott.net)  
+Email me: [hello@smithscott.net](mailto:hello@smithscott.net)
+
 ## Project setup
 ```
 npm install
