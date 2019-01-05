@@ -1,0 +1,42 @@
+.data-switcher {
+	grid-column: tabs;
+	padding: 0;
+	margin: 0 0 2rem 0;
+	display: grid;
+	grid-template-columns: repeat(2,50%);
+	justify-items: center;
+	justify-content: center;
+	
+	>li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		text-align: center;
+	}
+	
+	@media (min-width: 768px){
+		margin: 0;
+	}
+
+}
+
+.switcher {
+	cursor: pointer;
+	font-size: 1.25rem;
+	padding: 0.5rem;
+	font-weight: bold;
+	border-bottom: 3px solid $gray-light;
+	
+	&:hover {
+		border-color: $gray-mid;
+		background-color: $gray-light;
+	}
+	
+	&.selected-tab {
+		border-color: $red;
+		color: $red;
+	}
+	
+	
+}

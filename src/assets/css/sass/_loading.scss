@@ -1,0 +1,7 @@
+.loading-indc {
+	display: none;
+	
+	&.is-loading {
+		display: block;
+	}
+}

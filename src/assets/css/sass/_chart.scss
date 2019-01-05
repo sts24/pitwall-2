@@ -1,0 +1,79 @@
+.chart {
+	width: 100%;
+	border-spacing: 0;
+	box-shadow: 0 0.5rem 2rem rgba(black,0.25);
+	
+	//border: 3px solid $red;
+	
+	thead {
+		background: $red_grad;
+		background-attachment: fixed;
+		color: white;
+		
+		th {
+			text-align: left;
+			padding: 0.5rem;
+			white-space: nowrap;
+		}
+	}
+	
+	tbody {
+		
+		tr:nth-child(n+6){
+			display: none;
+		}
+
+		tr:nth-child(even){
+			background: lightgray;
+		}
+		
+		td {
+			padding: 0.5rem;
+			white-space: nowrap;
+		}
+	}
+	
+	&.show-all tbody tr { display: table-row; }
+	
+	@media (min-width: 768px){
+		
+		caption {
+			padding: 0 0 0.5rem 0;
+		}
+	}
+	
+	
+	@media (max-width: 767px){
+			border: 0 none;
+	}
+	
+}
+
+@media (max-width: 767px){
+
+	.chart-wrap {
+		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
+		//width: 80vw;
+		border: 3px solid $red;
+	}
+
+}
+
+
+.show-all-btn {
+	display: inline-block;
+	margin: 0 auto 0 auto;
+	background: $red;
+	color: white;
+	padding: 0.5rem;
+	font-size: 0.875rem;
+	font-weight: bold;
+	line-height: 1rem;
+	border-radius: 0 0 5px 5px;
+	cursor: pointer;
+		
+	&:hover {
+		color: gold;
+	}
+}
