@@ -29,3 +29,18 @@
 		h2 { font-size: 2rem; margin: 2rem 0 0 0; }
 	}
 }
+
+
+.header-desc {
+	max-width: 80ch;
+	margin: auto;
+	
+	p {
+		line-height: 1.5em;
+	}
+}
+
+.intro {
+	font-size: 1.5em;
+	font-weight: bold;
+}

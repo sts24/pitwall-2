@@ -4,7 +4,7 @@
 body {
 	padding: 0;
 	margin: 0;
-	font-family: Montserrat, sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	color: $gray-dark;
 
@@ -39,6 +39,12 @@ body {
 	grid-area: content;
 }
 
+.message {
+	text-align: center;
+	font-weight: bold;
+	font-size: rem(21);
+}
+
 @import 'sass/_chart';
 @import 'sass/_races';
 @import 'sass/_standings';
@@ -48,4 +54,18 @@ body {
 
 .hide {
 	display: none;
+}
+
+
+
+// loading transitions
+
+
+.loading-transition {
+	transition: 1s opacity;
+	opacity: 1;
+}
+
+.is-loading {
+	opacity: 0;
 }

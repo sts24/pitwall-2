@@ -4,6 +4,11 @@
 export default {
 	name: 'raceresult',
 	props: ['item'],
+	data: function () {
+		return {
+			showAll: false	
+		}
+	},
 	methods: {
 		gridDiff: function(car){
 
@@ -29,9 +34,6 @@ export default {
 			let raceUTC = new Date(raceDate);
 
 			return months[raceUTC.getMonth()] + ' ' + raceUTC.getDate() + ', ' + raceUTC.getFullYear();
-		},
-		showAll: function(item){
-			//Vue.set(item,'showAll',true)
 		}
 	}
 
@@ -49,11 +51,11 @@ export default {
 		<header>
 			<h2>{{ item.raceName }}</h2>
 			<h3>{{ item.Circuit.circuitName }}</h3>
-			<small>Round {{ item.round }} • {{ formatDate(item.date) }}</small>
+			<small>Round {{ item.round }} • {{ item.Circuit.Location.locality }}, {{ item.Circuit.Location.country }} • {{ formatDate(item.date) }}</small>
 		</header>
 
 		<div class="chart-wrap">
-			<table class="chart" v-bind:class="{ 'show-all': item.showAll }">
+			<table class="chart" v-bind:class="{ 'show-all': showAll }">
 				<thead>
 					<tr>
 						<th class="th-pos">Pos</th>
@@ -87,10 +89,12 @@ export default {
 			</table>
 		</div>
 
-		<footer v-show="item.showAll !== true">
-			<div class="show-all-btn" v-on:click="showAll(item)">Show Entire Results</div>
+		<footer v-show="showAll !== true">
+			<div class="show-all-btn" v-on:click="showAll = true">Show Entire Results</div>
 		</footer>
 
 	</section>
+	
+	
 
 </template>

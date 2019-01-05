@@ -29,7 +29,7 @@ import axios from 'axios'
 				viewOptions: {
 					seasonSelect: '',
 					selectedTab: 'races',
-					sortOrder: 'normal'
+					loading: false
 				}
 			}
 		},
@@ -40,6 +40,8 @@ import axios from 'axios'
 		methods: {
 			getData: function(api_endpoint,dataCat){
 				let $this = this;
+				
+				this.viewOptions.loading = true;
 
 				axios.get('https://ergast.com/api/f1/'+ api_endpoint +'?limit=1000')
 				.then(function(response){
@@ -64,6 +66,9 @@ import axios from 'axios'
 						if(dataCat == 'constructors'){
 							$this.f1data.constructorStandings = ajax_data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
 						}
+						
+						$this.viewOptions.loading = false;
+						
 				});
 			}
 
@@ -74,6 +79,9 @@ import axios from 'axios'
 				this.getData(newYear+'/results.json','races');
 				this.getData(newYear+'/driverStandings.json','drivers');
 				this.getData(newYear+'/constructorStandings.json','constructors');
+			},
+			'f1data': function(){
+				$this.viewOptions.loading = false;
 			}
 		}
 	}

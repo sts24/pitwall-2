@@ -30,11 +30,11 @@ export default {
 		<li><div class="switcher" :class="['tab-button', { 'selected-tab': viewOptions.selectedTab === 'standings' }]" v-on:click="viewOptions.selectedTab = 'standings'">Standings</div></li>
 	</ul>
 
-	<main class="content-area">
+	<main class="content-area loading-transition" v-if="f1data.races.length > 0" :class="{ 'is-loading': viewOptions.loading }">
 
 		<div class="races" v-show="viewOptions.selectedTab == 'races'">
 
-			<raceresult :item="race" :viewOptions="viewOptions" v-for="race in f1data.races" :key="race.index" ></raceresult>
+			<raceresult :item="race" v-for="race in f1data.races" :key="race.date" ></raceresult>
 
 		</div>
 
@@ -46,5 +46,11 @@ export default {
 		</div>
 
 	</main>
+
+	
+	<main class="content-area" v-else>
+		<p class="message">No data available for this season.</p>
+	</main>
+	
 </div>
 </template>
