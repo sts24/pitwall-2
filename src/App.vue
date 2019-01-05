@@ -2,7 +2,7 @@
  	
 	<router-view :f1data="f1data" :viewOptions="viewOptions"></router-view>
 
-f
+
 </template>
 
 <style lang="scss">
