@@ -17,7 +17,7 @@
 
 		<h1 class="hide">The Pit Wall</h1>
 
-		<img srcset="/images/pitwall-title@2x.png 2x, /images/pitwall-title.png 1x" class="site-title" />
+		<img srcset="@/assets/images/pitwall-title@2x.png 2x, @/assets/images/pitwall-title.png 1x" class="site-title" />
 		
 		<section class="header-desc">
 		
@@ -27,14 +27,15 @@
 		</section>
 
 		<nav class="data-selection">
+			
 			<label for="season-select">Select a Season</label>
 			<div class="season-select-wrapper">
 				<select id="season-select" v-model="viewOptions.seasonSelect" class="season-select">
-					<option v-for="season in f1data.seasons" v-bind="season.index" :value="season.season">{{ season.season }}</option>
+					<option v-for="season in f1data.seasons" v-bind="season.index" :value="season.season" :key="season.season">{{ season.season }}</option>
 				</select>
 			</div>
+			<div class="loading-spinner" :class="{ 'is-loading':viewOptions.loading }"></div>
 			
-			<div v-show="viewOptions.loading">Loading</div>
 		</nav>
 
 	</header>

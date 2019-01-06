@@ -20,7 +20,7 @@ body {
 
 	@media (min-width: 768px){
 		display: grid;
-		grid-gap: 3rem;
+		grid-gap: 1rem;
 		grid-template-columns: minmax(0,auto) minmax(auto,1000px) minmax(0,auto);
 
 		grid-template-areas:
