@@ -1,5 +1,5 @@
 <template>
- 	
+
 	<router-view :f1data="f1data" :viewOptions="viewOptions"></router-view>
 
 
@@ -53,8 +53,10 @@ import axios from 'axios'
 
 						if(dataCat == 'seasons'){
 							let all_seasons = ajax_data.MRData.SeasonTable.Seasons;
+							let paramObj = Object.keys($this.$route.params).length;
 
-							$this.f1data.seasons = all_seasons;
+							$this.f1data.seasons = all_seasons;							
+							// $this.viewOptions.seasonSelect = (paramObj > 0) ? $this.$route.params.year : all_seasons[all_seasons.length-1].season;
 							$this.viewOptions.seasonSelect = all_seasons[all_seasons.length-1].season;
 						}
 
@@ -81,7 +83,7 @@ import axios from 'axios'
 				this.getData(newYear+'/constructorStandings.json','constructors');
 			},
 			'f1data': function(){
-				$this.viewOptions.loading = false;
+				this.viewOptions.loading = false;
 			}
 		}
 	}

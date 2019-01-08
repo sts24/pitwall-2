@@ -90,7 +90,7 @@ export default {
 		</div>
 
 		<footer v-show="showAll !== true">
-			<div class="show-all-btn" v-on:click="showAll = true">Show Entire Results</div>
+			<button class="show-all-btn" v-on:click="showAll = true">Show Entire Results</button>
 		</footer>
 
 	</section>

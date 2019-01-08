@@ -26,8 +26,8 @@ export default {
 		<pageHeader :f1data="f1data" :viewOptions="viewOptions"></pageHeader>
 	
 		<ul class="data-switcher">
-			<li><div class="switcher" :class="['tab-button', { 'selected-tab': viewOptions.selectedTab === 'races' }]" v-on:click="viewOptions.selectedTab = 'races'">Races</div></li>
-			<li><div class="switcher" :class="['tab-button', { 'selected-tab': viewOptions.selectedTab === 'standings' }]" v-on:click="viewOptions.selectedTab = 'standings'">Standings</div></li>
+			<li><button class="switcher" :class="['tab-button', { 'selected-tab': viewOptions.selectedTab === 'races' }]" v-on:click="viewOptions.selectedTab = 'races'">Races</button></li>
+			<li><button class="switcher" :class="['tab-button', { 'selected-tab': viewOptions.selectedTab === 'standings' }]" v-on:click="viewOptions.selectedTab = 'standings'">Standings</button></li>
 		</ul>
 	
 		<main class="content-area loading-transition" v-if="f1data.races.length > 0" :class="{ 'is-loading': viewOptions.loading }">
