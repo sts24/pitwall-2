@@ -7,12 +7,16 @@ import pageHeader from '@/components/pageHeader.vue';
 
 export default {
 	name: 'home',
-	props: ['f1data','viewOptions'],
+	props: ['f1data','viewOptions','year'],
 	components: {
 		constructorstandings,
 		driverstandings,
 		raceresult,
 		pageHeader
+	},
+	created: function(){
+		console.log('home');
+		
 	}
 }
 

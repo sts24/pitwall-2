@@ -1,8 +1,5 @@
 <template>
-
 	<router-view :f1data="f1data" :viewOptions="viewOptions"></router-view>
-
-
 </template>
 
 <style lang="scss">
@@ -14,7 +11,6 @@
 
 import router from './router'
 import axios from 'axios'
-
 
 	export default {
 		router,
@@ -34,56 +30,81 @@ import axios from 'axios'
 			}
 		},
 		created: function(){
-			this.getData('seasons.json','seasons');
+			let $this = this;
+			axios.get('https://ergast.com/api/f1/seasons.json?limit=1000')
+				.then(function(response){
+					let all_seasons = response.data.MRData.SeasonTable.Seasons.reverse();
+					$this.f1data.seasons = all_seasons;	
+				});
 		},
 
 		methods: {
-			getData: function(api_endpoint,dataCat){
+			getData: function(loadYear){
+				console.log('loading');
+				
+
 				let $this = this;
 				
 				this.viewOptions.loading = true;
 
-				axios.get('https://ergast.com/api/f1/'+ api_endpoint +'?limit=1000')
-				.then(function(response){
-					var ajax_data = response.data;
+				const apiEndpoints = [
+					'results',
+					'driverStandings',
+					'constructorStandings'
+				];
 
-					if(dataCat == 'races'){
-							$this.f1data.races = ajax_data.MRData.RaceTable.Races;
-						}
+				apiEndpoints.forEach((apiData) => {
 
-						if(dataCat == 'seasons'){
-							let all_seasons = ajax_data.MRData.SeasonTable.Seasons;
-							let paramObj = Object.keys($this.$route.params).length;
+					axios.get('https://ergast.com/api/f1/'+ loadYear + '/' + apiData +'.json?limit=1000')
+						.then(function(response){
+							let ajax_data = response.data;
 
-							$this.f1data.seasons = all_seasons;							
-							// $this.viewOptions.seasonSelect = (paramObj > 0) ? $this.$route.params.year : all_seasons[all_seasons.length-1].season;
-							$this.viewOptions.seasonSelect = all_seasons[all_seasons.length-1].season;
-						}
+							if(apiData == 'results'){
+								$this.f1data.races = ajax_data.MRData.RaceTable.Races;
+							}
 
+							if(apiData == 'driverStandings'){
+								$this.f1data.driverStandings = ajax_data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+							}
+							
+							if(apiData == 'constructorStandings'){
+								$this.f1data.constructorStandings = ajax_data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+							}
 
-						if(dataCat == 'drivers'){
-							$this.f1data.driverStandings = ajax_data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-						}
-
-						if(dataCat == 'constructors'){
-							$this.f1data.constructorStandings = ajax_data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
-						}
-						
-						$this.viewOptions.loading = false;
-						
+						})
+						.then(function(){
+							$this.viewOptions.loading = false;
+							console.log('done');
+							
+						});
 				});
+				
+				
 			}
 
 		},
 
 		watch: {
-			'viewOptions.seasonSelect': function(newYear){
-				this.getData(newYear+'/results.json','races');
-				this.getData(newYear+'/driverStandings.json','drivers');
-				this.getData(newYear+'/constructorStandings.json','constructors');
+			'f1data.seasons': function(){
+				// set default year on load. Season list will only be set on first load
+				let newYear = (Object.keys(this.$route.params).length > 0) ? this.$route.params.year : this.f1data.seasons[0].season;
+				this.viewOptions.seasonSelect = newYear;
 			},
-			'f1data': function(){
-				this.viewOptions.loading = false;
+			'viewOptions.seasonSelect': function(newYear,oldYear){
+				
+				// only chnage URL if it was selected by menu or URL param. Home will default to blank URL
+				if(this.$route.name == 'home' && oldYear == ''){
+					router.replace({ name: 'home', params: { 'year': '' } });
+				} else {
+					router.push({ name: 'season', params: { 'year': newYear } });
+				}
+
+				// ajax call to API
+				this.getData(newYear);
+			},
+			'$route': function(newData,oldData){
+				// set new season year on router change
+				this.viewOptions.seasonSelect = this.$route.params.year;				
 			}
 		}
 	}
