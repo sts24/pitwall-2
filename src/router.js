@@ -11,14 +11,15 @@ export default new Router({
       path: '/:year',
       name: 'season',
       component: Home,
-      props: true
-    },
-    {
-      path: '/',
-      name: 'home',
-      component: Home,
-      props: true
-    },
+      props: true,
+      beforeEnter: function(to, from, next){
+        console.log([
+          'season, beforeRoute: ',to, from
+        ]);
+
+        next();
+      }
+    }
     
   ]
 })

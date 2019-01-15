@@ -25,7 +25,8 @@ import axios from 'axios'
 				viewOptions: {
 					seasonSelect: '',
 					selectedTab: 'races',
-					loading: false
+					loading: false,
+					firstLoad: true
 				}
 			}
 		},
@@ -83,7 +84,7 @@ import axios from 'axios'
 			}
 
 		},
-
+		
 		watch: {
 			'f1data.seasons': function(){
 				// set default year on load. Season list will only be set on first load
@@ -91,20 +92,15 @@ import axios from 'axios'
 				this.viewOptions.seasonSelect = newYear;
 			},
 			'viewOptions.seasonSelect': function(newYear,oldYear){
-				
-				// only chnage URL if it was selected by menu or URL param. Home will default to blank URL
-				if(this.$route.name == 'home' && oldYear == ''){
-					router.replace({ name: 'home', params: { 'year': '' } });
-				} else {
-					router.push({ name: 'season', params: { 'year': newYear } });
-				}
+
+				router.push({ name: 'season', params: { 'year': newYear } });
 
 				// ajax call to API
 				this.getData(newYear);
 			},
 			'$route': function(newData,oldData){
 				// set new season year on router change
-				this.viewOptions.seasonSelect = this.$route.params.year;				
+				this.viewOptions.seasonSelect = this.$route.params.year;
 			}
 		}
 	}
