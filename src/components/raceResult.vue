@@ -10,7 +10,6 @@ export default {
 		}
 	},
 	created: function(){
-		console.log('updated');
 		this.viewOptions.loading = false;
 	},
 	methods: {
