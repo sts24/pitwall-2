@@ -3,11 +3,15 @@
 
 export default {
 	name: 'raceresult',
-	props: ['item'],
+	props: ['item','viewOptions'],
 	data: function () {
 		return {
 			showAll: false	
 		}
+	},
+	created: function(){
+		console.log('updated');
+		this.viewOptions.loading = false;
 	},
 	methods: {
 		gridDiff: function(car){

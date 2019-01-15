@@ -13,10 +13,6 @@ export default {
 		driverstandings,
 		raceresult,
 		pageHeader
-	},
-	created: function(){
-		console.log('home');
-		
 	}
 }
 
@@ -34,11 +30,11 @@ export default {
 			<li><button class="switcher" :class="['tab-button', { 'selected-tab': viewOptions.selectedTab === 'standings' }]" v-on:click="viewOptions.selectedTab = 'standings'">Standings</button></li>
 		</ul>
 	
-		<main class="content-area loading-transition" v-if="f1data.races.length > 0" :class="{ 'is-loading': viewOptions.loading }">
+		<main class="content-area" v-show="viewOptions.loading == false && f1data.races.length > 0" >
 	
 			<div class="races" v-show="viewOptions.selectedTab == 'races'">
 	
-				<raceresult :item="race" v-for="race in f1data.races" :key="race.date" ></raceresult>
+				<raceresult :item="race" :viewOptions="viewOptions" v-for="race in f1data.races" :key="race.date"></raceresult>
 	
 			</div>
 	
@@ -52,7 +48,7 @@ export default {
 		</main>
 	
 		
-		<main class="content-area" v-else>
+		<main class="content-area" v-show="f1data.races.length == 0">
 			<p class="message">No data available for this season.</p>
 		</main>
 		

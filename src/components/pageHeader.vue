@@ -34,6 +34,7 @@
 					<option v-for="season in f1data.seasons" v-bind="season.index" :value="season.season" :key="season.season">{{ season.season }}</option>
 				</select>
 			</div>
+			
 			<div class="loading-spinner" :class="{ 'is-loading':viewOptions.loading }"></div>
 			
 		</nav>

@@ -25,8 +25,7 @@ import axios from 'axios'
 				viewOptions: {
 					seasonSelect: '',
 					selectedTab: 'races',
-					loading: false,
-					firstLoad: true
+					loading: true
 				}
 			}
 		},
@@ -38,15 +37,10 @@ import axios from 'axios'
 					$this.f1data.seasons = all_seasons;	
 				});
 		},
-
 		methods: {
-			getData: function(loadYear){
-				console.log('loading');
-				
+			getData: function(loadYear){				
 
 				let $this = this;
-				
-				this.viewOptions.loading = true;
 
 				const apiEndpoints = [
 					'results',
@@ -72,11 +66,6 @@ import axios from 'axios'
 								$this.f1data.constructorStandings = ajax_data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
 							}
 
-						})
-						.then(function(){
-							$this.viewOptions.loading = false;
-							console.log('done');
-							
 						});
 				});
 				
@@ -91,14 +80,25 @@ import axios from 'axios'
 				let newYear = (Object.keys(this.$route.params).length > 0) ? this.$route.params.year : this.f1data.seasons[0].season;
 				this.viewOptions.seasonSelect = newYear;
 			},
+			'f1data.races': function(newData){
+				if(newData.length == 0){
+					this.viewOptions.loading = false;
+				}
+				
+			},
 			'viewOptions.seasonSelect': function(newYear,oldYear){
-
+				// update router with new URL
 				router.push({ name: 'season', params: { 'year': newYear } });
+
+				// start loading animation
+				this.viewOptions.loading = true;
 
 				// ajax call to API
 				this.getData(newYear);
 			},
 			'$route': function(newData,oldData){
+				
+
 				// set new season year on router change
 				this.viewOptions.seasonSelect = this.$route.params.year;
 			}
