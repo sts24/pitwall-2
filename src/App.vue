@@ -31,7 +31,11 @@ import axios from 'axios'
 		},
 		created: function(){
 			let $this = this;
-			axios.get('https://ergast.com/api/f1/seasons.json?limit=1000')
+			axios.get('https://ergast.com/api/f1/seasons.json?limit=1000', {
+					headers: {
+    					Origin: 'https://smithscott.net'
+					  }
+				})
 				.then(function(response){
 					let all_seasons = response.data.MRData.SeasonTable.Seasons.reverse();
 					$this.f1data.seasons = all_seasons;	

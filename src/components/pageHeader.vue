@@ -22,7 +22,7 @@
 		<section class="header-desc">
 		
 		<p class="intro">Explore historical records of past Formula 1 championships.</p>
-		<p>Pitwall uses the <a href="https://ergast.com/mrd/">Ergast API</a> for the historical data and this app was written by <a href="https://www.smithscott.net">Scott Smith</a>. Learn more about how this app was built on <a href="#">GitHub</a>.</p>
+		<p>Pitwall uses the <a href="https://ergast.com/mrd/">Ergast API</a> for the historical data and this app was written by <a href="https://www.smithscott.net">Scott Smith</a>. Learn more about how this app was built on <a href="https://github.com/sts24/pitwall-2/">GitHub</a>.</p>
 		
 		</section>
 
