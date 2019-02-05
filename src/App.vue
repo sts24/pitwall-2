@@ -25,7 +25,8 @@ import axios from 'axios'
 				viewOptions: {
 					seasonSelect: '',
 					selectedTab: 'races',
-					loading: true
+					loading: true,
+					error: false
 				}
 			}
 		},
@@ -37,8 +38,13 @@ import axios from 'axios'
 					  }
 				})
 				.then(function(response){
+					console.log(response);
+
 					let all_seasons = response.data.MRData.SeasonTable.Seasons.reverse();
 					$this.f1data.seasons = all_seasons;	
+				})
+				.catch(function(error){
+					router.push({ name: 'error' });
 				});
 		},
 		methods: {
@@ -70,6 +76,9 @@ import axios from 'axios'
 								$this.f1data.constructorStandings = ajax_data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
 							}
 
+						})
+						.catch(function(error){
+							router.push({ name: 'error' });
 						});
 				});
 				
@@ -101,10 +110,12 @@ import axios from 'axios'
 				this.getData(newYear);
 			},
 			'$route': function(newData,oldData){
-				
+				if(newData.name !== 'error'){
 
-				// set new season year on router change
-				this.viewOptions.seasonSelect = this.$route.params.year;
+					// set new season year on router change
+					this.viewOptions.seasonSelect = this.$route.params.year;
+
+				}
 			}
 		}
 	}

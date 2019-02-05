@@ -69,3 +69,19 @@ body {
 .is-loading {
 	opacity: 0;
 }
+
+
+// errors
+
+.error {
+	margin: 2rem;
+	background: $red;
+	color: white;
+	font-size: rem(32);
+	padding: 1rem;
+	display: inline-block;
+
+	a {
+		color: yellow;
+	}
+}
