@@ -33,7 +33,7 @@ import axios from 'axios'
 			let $this = this;
 			axios.get('https://ergast.com/api/f1/seasons.json?limit=1000', {
 					headers: {
-    					Origin: 'https://smithscott.net'
+    					Origin: 'https://pitwall.smithscott.net'
 					  }
 				})
 				.then(function(response){
