@@ -32,7 +32,7 @@ import axios from 'axios'
 		},
 		created: function(){
 			let $this = this;
-			axios.get('http://localhost:3000/api/seasons', {
+			axios.get(process.env.VUE_APP_API_SOURCE+'/api/seasons', {
 				})
 				.then(function(response){
 					console.log(response.data);
@@ -57,7 +57,7 @@ import axios from 'axios'
 
 				apiEndpoints.forEach((apiData) => {
 
-					axios.get('http://localhost:3000/api/'+ apiData + '/' + loadYear)
+					axios.get(process.env.VUE_APP_API_SOURCE+'/api/'+ apiData + '/' + loadYear)
 						.then(function(response){
 							let ajax_data = response.data;
 
