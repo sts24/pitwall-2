@@ -32,19 +32,16 @@ import axios from 'axios'
 		},
 		created: function(){
 			let $this = this;
-			axios.get('https://ergast.com/api/f1/seasons.json?limit=1000', {
-					headers: {
-    					Origin: 'https://pitwall.smithscott.net'
-					  }
+			axios.get('http://localhost:3000/api/seasons', {
 				})
 				.then(function(response){
-					console.log(response);
-
+					console.log(response.data);
 					let all_seasons = response.data.MRData.SeasonTable.Seasons.reverse();
 					$this.f1data.seasons = all_seasons;	
 				})
 				.catch(function(error){
-					router.push({ name: 'error' });
+					console.log(error);
+					//router.push({ name: 'error' });
 				});
 		},
 		methods: {
@@ -60,7 +57,7 @@ import axios from 'axios'
 
 				apiEndpoints.forEach((apiData) => {
 
-					axios.get('https://ergast.com/api/f1/'+ loadYear + '/' + apiData +'.json?limit=1000')
+					axios.get('http://localhost:3000/api/'+ apiData + '/' + loadYear)
 						.then(function(response){
 							let ajax_data = response.data;
 
@@ -78,7 +75,8 @@ import axios from 'axios'
 
 						})
 						.catch(function(error){
-							router.push({ name: 'error' });
+							console.log(error);
+							//router.push({ name: 'error' });
 						});
 				});
 				
