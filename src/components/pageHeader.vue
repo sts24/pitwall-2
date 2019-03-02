@@ -1,8 +1,12 @@
 <script>
+	import { mapState } from 'vuex'
 
 	export default {
 		name: 'pageheader',
-		props: ['f1data','viewOptions']
+		computed: mapState([
+			'f1data',
+			'viewOptions'
+		])
 	}
 
 </script>

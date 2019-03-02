@@ -1,9 +1,14 @@
 <script>
-
+import { mapState } from 'vuex'
 
 export default {
+
 	name: 'raceresult',
-	props: ['item','viewOptions'],
+	props: ['item'],
+	computed: mapState([
+		'f1data',
+		'viewOptions'
+	]),
 	data: function () {
 		return {
 			showAll: false	

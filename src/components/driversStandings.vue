@@ -1,8 +1,12 @@
 <script>
+	import { mapState } from 'vuex'
 
 	export default {
 		name: 'driversstandings',
-		props: ['item'],
+		computed: mapState([
+			'f1data',
+			'viewOptions'
+		]),
 		methods: {
 			constructorsList: function(items){
 				let c_list = [];
@@ -41,7 +45,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="i in item" :key="i.index">
+					<tr v-for="i in f1data.driverStandings" :key="i.index">
 						<td>{{ i.positionText }}</td>
 						<td>{{ i.Driver.givenName }} {{ i.Driver.familyName }}</td>
 						<td>{{ constructorsList(i.Constructors) }}</td>

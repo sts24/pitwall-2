@@ -1,8 +1,13 @@
 <script>
+	import { mapState } from 'vuex'
 
 	export default {
 		name: 'constructorsstandings',
-		props: ['item']
+		props: ['item'],
+		computed: mapState([
+			'f1data',
+			'viewOptions'
+		])
 	}
 
 </script>
@@ -30,7 +35,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="i in item" :key="i.index">
+					<tr v-for="i in f1data.constructorStandings" :key="i.index">
 						<td>{{ i.positionText }}</td>
 						<td>{{ i.Constructor.name }}</td>
 						<td>{{ i.points }}</td>
