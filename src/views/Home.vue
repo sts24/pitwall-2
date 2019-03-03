@@ -28,27 +28,37 @@ export default {
 <template>
 	<div id="page">
 		<pageHeader></pageHeader>
-	
-		<ul class="data-switcher">
-			<li><button class="switcher" :class="['tab-button', { 'selected-tab': viewOptions.selectedTab === 'races' }]" v-on:click="viewOptions.selectedTab = 'races'">Races</button></li>
-			<li><button class="switcher" :class="['tab-button', { 'selected-tab': viewOptions.selectedTab === 'standings' }]" v-on:click="viewOptions.selectedTab = 'standings'">Standings</button></li>
-		</ul>
-	
-		<main class="content-area" v-show="viewOptions.loading == false && f1data.races.length > 0" >
-			<div class="races" v-show="viewOptions.selectedTab == 'races'">
-				<raceresult :item="race" v-for="race in f1data.races" :key="race.date"></raceresult>
-			</div>
 
-			<div class="standings" v-show="viewOptions.selectedTab == 'standings'">
-				<driverstandings></driverstandings>
-				<constructorstandings></constructorstandings>
-			</div>
-	
+		<main class="content-area">
+
+			<header class="content-header content-block">
+				<h1>{{ viewOptions.seasonSelect }} Season</h1>
+			</header>
+
+			
+			<raceresult :key="'races-'+viewOptions.seasonSelect" v-show="viewOptions.selectedTab == 'races'"></raceresult>
+		
+			<section class="content-block" v-show="viewOptions.selectedTab == 'drivers'">
+				<driverstandings :key="'drivers-'+viewOptions.seasonSelect"></driverstandings>
+			</section>
+
+			<section class="content-block" v-show="viewOptions.selectedTab == 'constructors'">
+				<constructorstandings :key="'constructors-'+viewOptions.seasonSelect"></constructorstandings>
+			</section>
+
+
+
+			<section class="overlay" v-show="viewOptions.loading == true">
+				<div class="loading-spinner is-loading"></div>
+			</section>
+
+			<!-- <section class="overlay" v-show="f1data.races.length == 0">
+				<p class="message">No data available for this season.</p>
+			</section> -->
+
 		</main>
 
-		<main class="content-area" v-show="f1data.races.length == 0">
-			<p class="message">No data available for this season.</p>
-		</main>
+		
 		
 	</div>
 </template>

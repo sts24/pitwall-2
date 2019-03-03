@@ -1,11 +1,13 @@
 .data-selection {
-	text-align: center;
+	text-align: left;
 	
 	label {
 		display: block;
 		font-weight: bold;
 		font-size: 1rem;
 		line-height: 1.5em;
+		color: white;
+		margin-left: 0.5rem;
 	}
 	
 	@media (min-width: 768px){
@@ -16,14 +18,14 @@
 
 
 .season-select-wrapper {
-	width: 100px;
-	margin: 0 auto;
+	width: 100%;
+	max-width: 200px;
+	margin: 0;
 	
 	font-weight: bold;
 	padding: 0;
 	border: 0;
 	background-color: $red;
-	width: 120px;
 	
 	
 	background-image: url('./assets/images/arrow-down.svg');
@@ -57,29 +59,3 @@
 	}
 }
 
-
-.loading-spinner {
-	display: inline-block;
-	visibility: hidden;
-	width: 2em;
-	height: 2em;
-	margin-top: 1em;
-	
-	background-image: url('./assets/images/spinner.svg');
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	
-	animation: spin 1s infinite linear;
-	
-	&.is-loading {
-		visibility: visible;
-		opacity: 1;
-	}
-}
-
-
-@keyframes spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
-}

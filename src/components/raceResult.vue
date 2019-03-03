@@ -14,7 +14,7 @@ export default {
 			showAll: false	
 		}
 	},
-	created: function(){
+	updated: function(){
 		this.viewOptions.loading = false;
 	},
 	methods: {
@@ -54,55 +54,65 @@ export default {
 
 <template>
 
-	<section class="race-table">
-
+	<section class="content-block" v-if="f1data.races.length > 0">
 		<header>
-			<h2>{{ item.raceName }}</h2>
-			<h3>{{ item.Circuit.circuitName }}</h3>
-			<small>Round {{ item.round }} • {{ item.Circuit.Location.locality }}, {{ item.Circuit.Location.country }} • {{ formatDate(item.date) }}</small>
+			<h2>Race Results</h2>
 		</header>
 
-		<div class="chart-wrap">
-			<table class="chart" v-bind:class="{ 'show-all': showAll }">
-				<thead>
-					<tr>
-						<th class="th-pos">Pos</th>
-						<th><span class="hide">Position Change</span></th>
-						<th>Driver</th>
-						<th>Grid</th>
-						<th>Car #</th>
-						<th>Constructor</th>
-						<th>Fastest Lap</th>
-						<th>Laps</th>
-						<th>Time</th>
-						<th>Points</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr v-for="car in item.Results" :key="car.index">
-						<td>{{ car.positionText }}</td>
-						<td v-if="gridDiff(car) > 0"><span class="grid-change grid-up">{{ gridDiff(car) }}</span></td>
-						<td v-if="gridDiff(car) < 0"><span class="grid-change grid-down">{{ Math.abs(gridDiff(car)) }}</span></td>
-						<td v-if="gridDiff(car) == 0"></td>
-						<td>{{ car.Driver.givenName }} {{ car.Driver.familyName }}</td>
-						<td>{{ car.grid }}</td>
-						<td>{{ car.number }}</td>
-						<td>{{ car.Constructor.name }}</td>
-						<td>{{ car.FastestLap ? car.FastestLap.Time.time : '' }}</td>
-						<td>{{ car.laps }}</td>
-						<td>{{ car.Time ? car.Time.time : '' }}</td>
-						<td>{{ car.points }}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<section class="race-table" v-for="item in f1data.races" :key="item.date">
 
-		<footer v-show="showAll !== true">
-			<button class="show-all-btn" v-on:click="showAll = true">Show Entire Results</button>
-		</footer>
+			<header>
+				<h2>{{ item.raceName }}</h2>
+				<h3>{{ item.Circuit.circuitName }}</h3>
+				<small>Round {{ item.round }} • {{ item.Circuit.Location.locality }}, {{ item.Circuit.Location.country }} • {{ formatDate(item.date) }}</small>
+			</header>
+
+			<div class="chart-wrap">
+				<table class="chart" v-bind:class="{ 'show-all': showAll }">
+					<thead>
+						<tr>
+							<th class="th-pos">Pos</th>
+							<th><span class="hide">Position Change</span></th>
+							<th>Driver</th>
+							<th>Grid</th>
+							<th>No.</th>
+							<th>Car</th>
+							<th>Fastest Lap</th>
+							<th>Laps</th>
+							<th>Time</th>
+							<th>Points</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="car in item.Results" :key="car.index">
+							<td>{{ car.positionText }}</td>
+							<td v-if="gridDiff(car) > 0"><span class="grid-change grid-up">{{ gridDiff(car) }}</span></td>
+							<td v-if="gridDiff(car) < 0"><span class="grid-change grid-down">{{ Math.abs(gridDiff(car)) }}</span></td>
+							<td v-if="gridDiff(car) == 0"></td>
+							<td>{{ car.Driver.givenName }} {{ car.Driver.familyName }}</td>
+							<td>{{ car.grid }}</td>
+							<td>{{ car.number }}</td>
+							<td>{{ car.Constructor.name }}</td>
+							<td>{{ car.FastestLap ? car.FastestLap.Time.time : '' }}</td>
+							<td>{{ car.laps }}</td>
+							<td>{{ car.Time ? car.Time.time : '' }}</td>
+							<td>{{ car.points }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<footer v-show="showAll !== true">
+				<button class="show-all-btn" v-on:click="showAll = true">Show Entire Results</button>
+			</footer>
+
+		</section>
+	
 
 	</section>
 	
-	
+	<section class="overlay" v-else>
+		<p class="message">No race data availible for this season.</p>
+	</section>
 
 </template>

@@ -24,7 +24,8 @@ export default new Vuex.Store({
     setDrivers(state,payload){ state.f1data.driverStandings = payload; },
     setConstructors(state,payload){ state.f1data.constructorStandings = payload; },
     setSeasonSelect(state,payload){ state.viewOptions.seasonSelect = payload; },
-    setLoading(state,payload){ state.viewOptions.loading = payload; },
+    setLoading(state,payload){ state.viewOptions.loading = payload; console.log(payload); },
+    setTab(state,payload){ state.viewOptions.selectedTab = payload; },
   },
   actions: {
 

@@ -18,7 +18,7 @@
 
 <template>
 
-	<section class="standings-table">
+	<section v-if="f1data.constructorStandings.length > 0" class="standings-table">
 
 		<header>
 			<h2>Constructor's Championship</h2>
@@ -45,6 +45,10 @@
 			</table>
 		</div>
 
+	</section>
+
+	<section class="overlay" v-else>
+		<p class="message">No constructor's standings data availible for this season.</p>
 	</section>
 
 </template>

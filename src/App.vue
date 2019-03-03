@@ -19,15 +19,13 @@ import { close, closeSync } from 'fs';
 		created: function(){
 				let store = this.$store;
 
-				axios.get(process.env.VUE_APP_API_SOURCE+'/api/seasons', {
-				})
+				axios.get(process.env.VUE_APP_API_SOURCE+'/api/seasons', { })
 				.then(function(response){
 					let all_seasons = response.data.MRData.SeasonTable.Seasons.reverse();
 					store.commit('setSeasons', all_seasons);
 				})
 				.catch(function(error){
 					console.log(error);
-					//router.push({ name: 'error' });
 				});
 
 				// watch for change on season list loading
@@ -101,7 +99,6 @@ import { close, closeSync } from 'fs';
 			},
 			'$route': function(newData,oldData){
 				if(newData.name !== 'error'){
-					// set new season year on router change
 					this.$store.commit('setSeasonSelect', this.$route.params.year);
 				}
 			}

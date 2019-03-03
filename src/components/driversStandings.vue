@@ -27,7 +27,7 @@
 <template>
 
 
-	<section class="standings-table">
+	<section class="standings-table" v-if="f1data.driverStandings.length > 0">
 
 		<header>
 			<h2>Driver's Championship</h2>
@@ -56,7 +56,10 @@
 			</table>
 		</div>
 
+	</section>
 
+	<section class="overlay" v-else>
+		<p class="message">No driver's standings data availible for this season.</p>
 	</section>
 
 

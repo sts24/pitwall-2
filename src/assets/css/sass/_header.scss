@@ -1,11 +1,21 @@
 .header {
 	grid-area: header;
 	text-align: center;
-	padding: 1rem;
+	position: relative;
+
+	.header-contents {
+		position: fixed;
+		width: 20vw;
+		min-width: 200px;
+		padding: 1rem;
+	}
+
+	background-color: rgb(10,10,10);
 	
 	.site-title {
-		max-width: 500px;
+		//max-width: 500px;
 		width: 100%;
+		height: auto;
 		margin: 0 0 2rem 0;
 	}
 
