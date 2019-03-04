@@ -1,42 +1,38 @@
 .header {
 	grid-area: header;
-	text-align: center;
 	position: relative;
 
 	.header-contents {
-		position: fixed;
-		width: 20vw;
-		min-width: 200px;
-		padding: 1rem;
+		padding: 1rem 1rem 0 1rem;
+
+		@media (min-width: 768px){
+			position: fixed;
+			width: 20vw;
+			min-width: 200px;
+			padding: 1rem;
+		}	
 	}
 
 	background-color: rgb(10,10,10);
 	
+	
 	.site-title {
-		//max-width: 500px;
 		width: 100%;
 		height: auto;
 		margin: 0 0 2rem 0;
+
+		@media (max-width: 767px){
+			max-width: 200px;
+			margin-bottom: 1rem;
+		}
 	}
 
-	h1 {
-		font-weight: normal;
-		font-size: 2.5rem;
-		padding: 0;
-		margin: 0 0 1rem 0;
-	}
-	
-	h2 {
-		text-align: center;
-		margin: 1rem 0 0 0;
-		padding: 0;
-		font-size: 1.25rem;
-		font-weight: normal;
-	}
-	
 	@media (min-width: 768px){
-		h1 { margin: 0 0 2rem 0; }
-		h2 { font-size: 2rem; margin: 2rem 0 0 0; }
+		background-image: url('./assets/images/checkerd-flag.png');
+		background-position: left bottom;
+		background-size: 100& auto;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
 	}
 }
 
