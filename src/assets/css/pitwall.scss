@@ -32,9 +32,10 @@ body {
 @import 'sass/_filters';
 
 .content-area {
+	position: relative;
+
 	@media (min-width: 768px){
 		grid-area: content;
-		position: relative;
 		background-image: url('./assets/images/car-bg.jpg');
 		background-size: auto 480px;
 		background-position: right bottom;
@@ -117,4 +118,9 @@ body {
 	align-items: center;
 	justify-content: center;
 	background-color: white;
+
+	@media (max-width: 767px){
+		bottom: 0;
+		height: auto;
+	}
 }

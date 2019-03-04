@@ -47,14 +47,9 @@ export default {
 			</section>
 
 
-
 			<section class="overlay" v-show="viewOptions.loading == true">
-				<div class="loading-spinner is-loading"></div>
+				<div class="loading-spinner"></div>
 			</section>
-
-			<!-- <section class="overlay" v-show="f1data.races.length == 0">
-				<p class="message">No data available for this season.</p>
-			</section> -->
 
 		</main>
 
