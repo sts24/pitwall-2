@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "test": "jest",
     "lint": "vue-cli-service lint",
-    "api": "node ../node-server-side-cache/index.js &"
+    "api": "node ../node-server-side-cache/index.js"
   },
   "dependencies": {
     "vue": "^2.5.17",

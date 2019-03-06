@@ -53,18 +53,20 @@ import { close, closeSync } from 'fs';
 
 					axios.get(process.env.VUE_APP_API_SOURCE+'/api/'+ apiData + '/' + loadYear)
 						.then(function(response){
-							let ajax_data = response.data;
-
+							let ajax_data = response.data.MRData;
+							
 							if(apiData == 'results'){
-								store.commit('setRaces', ajax_data.MRData.RaceTable.Races );
+								store.commit('setRaces', ajax_data.RaceTable.Races );
 							}
 
 							if(apiData == 'driverStandings'){
-								store.commit('setDrivers', ajax_data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+								let driversData = (ajax_data.StandingsTable.StandingsLists.length > 0) ? ajax_data.StandingsTable.StandingsLists[0].DriverStandings : [];
+								store.commit('setDrivers', driversData);
 							}
 							
 							if(apiData == 'constructorStandings'){
-								store.commit('setConstructors', ajax_data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings);
+								let constructorsData = (ajax_data.StandingsTable.StandingsLists.length > 0) ? ajax_data.StandingsTable.StandingsLists[0].ConstructorStandings : [];
+								store.commit('setConstructors', constructorsData);
 							}
 
 						})
