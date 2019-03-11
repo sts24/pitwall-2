@@ -25,7 +25,6 @@ import { close, closeSync } from 'fs';
 					store.commit('setSeasons', all_seasons);
 				})
 				.catch(function(error){
-					console.log(error);
 				});
 
 				// watch for change on season list loading
@@ -71,7 +70,6 @@ import { close, closeSync } from 'fs';
 
 						})
 						.catch(function(error){
-							console.log(error);
 							//router.push({ name: 'error' });
 						});
 				});

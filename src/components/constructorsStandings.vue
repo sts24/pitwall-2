@@ -7,7 +7,12 @@
 		computed: mapState([
 			'f1data',
 			'viewOptions'
-		])
+		]),
+		methods: {
+			flagImgPath: function(nation){
+				return process.env.BASE_URL+'/nation-flags/'+nation.replace(' ','')+'.svg';
+			}
+		}
 	}
 
 </script>
@@ -37,7 +42,10 @@
 				<tbody>
 					<tr v-for="i in f1data.constructorStandings" :key="i.index">
 						<td>{{ i.positionText }}</td>
-						<td>{{ i.Constructor.name }}</td>
+						<td>
+							<a :href="i.Constructor.url" target="_blank">{{ i.Constructor.name }}</a>
+							<img :src="flagImgPath(i.Constructor.nationality)" class="nation-flag" />
+						</td>
 						<td>{{ i.points }}</td>
 						<td>{{ i.wins }}</td>
 					</tr>

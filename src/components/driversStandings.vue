@@ -14,6 +14,9 @@
 					c_list[i] = items[i].name;
 				}
 				return c_list.join(', ');
+			},
+			flagImgPath: function(nation){
+				return process.env.BASE_URL+'/nation-flags/'+nation.replace(' ','')+'.svg';
 			}
 		}
 	}
@@ -47,7 +50,10 @@
 				<tbody>
 					<tr v-for="i in f1data.driverStandings" :key="i.index">
 						<td>{{ i.positionText }}</td>
-						<td>{{ i.Driver.givenName }} {{ i.Driver.familyName }}</td>
+						<td>
+							<a :href="i.Driver.url" target="_blank">{{ i.Driver.givenName }} {{ i.Driver.familyName }}</a> 
+							<img :src="flagImgPath(i.Driver.nationality)" class="nation-flag" />
+						</td>
 						<td>{{ constructorsList(i.Constructors) }}</td>
 						<td>{{ i.points }}</td>
 						<td>{{ i.wins }}</td>

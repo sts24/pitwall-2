@@ -1,6 +1,7 @@
 .header {
 	grid-area: header;
 	position: relative;
+	color: white;
 
 	.header-contents {
 		padding: 1rem 1rem 0 1rem;
@@ -50,7 +51,10 @@
 	}
 }
 
-.intro {
-	font-size: 1.5em;
-	font-weight: bold;
+.info {
+	font-size: 1em;
+
+	a {
+		color: lighten($link-color,25%);
+	}
 }

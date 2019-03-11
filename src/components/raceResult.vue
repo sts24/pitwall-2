@@ -11,7 +11,7 @@ export default {
 	]),
 	data: function () {
 		return {
-			showAll: false	
+			showAllResults: false	
 		}
 	},
 	updated: function(){
@@ -42,6 +42,9 @@ export default {
 			let raceUTC = new Date(raceDate);
 
 			return months[raceUTC.getMonth()] + ' ' + raceUTC.getDate() + ', ' + raceUTC.getFullYear();
+		},
+		flagImgPath: function(nation){
+			return process.env.BASE_URL+'/nation-flags/'+nation.replace(' ','')+'.svg';
 		}
 	}
 
@@ -63,12 +66,12 @@ export default {
 
 			<header>
 				<h2>{{ item.raceName }}</h2>
-				<h3>{{ item.Circuit.circuitName }}</h3>
-				<small>Round {{ item.round }} • {{ item.Circuit.Location.locality }}, {{ item.Circuit.Location.country }} • {{ formatDate(item.date) }}</small>
+				<h3><a :href="item.Circuit.url" target="_blank">{{ item.Circuit.circuitName }}</a></h3>
+				<small>Round {{ item.round }} • {{ item.Circuit.Location.locality }}, {{ item.Circuit.Location.country }} • {{ formatDate(item.date) }} • <a :href="item.url" target="_blank">Read on Wikipedia</a></small>
 			</header>
 
 			<div class="chart-wrap">
-				<table class="chart" v-bind:class="{ 'show-all': showAll }">
+				<table class="chart" v-bind:class="{ 'show-all': showAllResults }">
 					<thead>
 						<tr>
 							<th class="th-pos">Pos</th>
@@ -89,10 +92,15 @@ export default {
 							<td v-if="gridDiff(car) > 0"><span class="grid-change grid-up">{{ gridDiff(car) }}</span></td>
 							<td v-if="gridDiff(car) < 0"><span class="grid-change grid-down">{{ Math.abs(gridDiff(car)) }}</span></td>
 							<td v-if="gridDiff(car) == 0"></td>
-							<td>{{ car.Driver.givenName }} {{ car.Driver.familyName }}</td>
+							<td>
+								<a :href="car.Driver.url" target="_blank">{{ car.Driver.givenName }} {{ car.Driver.familyName }}</a> 
+								<img :src="flagImgPath(car.Driver.nationality)" class="nation-flag" /></td>
 							<td>{{ car.grid }}</td>
 							<td>{{ car.number }}</td>
-							<td>{{ car.Constructor.name }}</td>
+							<td>
+								<a :href="car.Constructor.url" target="_blank">{{ car.Constructor.name }}</a>
+								<img :src="flagImgPath(car.Constructor.nationality)" class="nation-flag" />
+							</td>
 							<td>{{ car.FastestLap ? car.FastestLap.Time.time : '' }}</td>
 							<td>{{ car.laps }}</td>
 							<td>{{ car.Time ? car.Time.time : '' }}</td>
@@ -102,8 +110,8 @@ export default {
 				</table>
 			</div>
 
-			<footer v-show="showAll !== true">
-				<button class="show-all-btn" v-on:click="showAll = true">Show Entire Results</button>
+			<footer v-show="showAllResults !== true">
+				<button class="show-all-btn" v-on:click="showAllResults = true">Show Entire Results</button>
 			</footer>
 
 		</section>

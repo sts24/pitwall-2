@@ -14,6 +14,14 @@ body {
 	}
 }
 
+a {
+	color: $link-color;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
 #page {
 	@media (min-width: 768px){
 		display: grid;
@@ -64,6 +72,13 @@ body {
 	text-align: center;
 	font-weight: bold;
 	font-size: rem(21);
+}
+
+.nation-flag {
+	width: auto;
+	height: 1em;
+	margin-left: 1ch;
+	vertical-align: middle;
 }
 
 @import 'sass/_chart';
