@@ -17,25 +17,21 @@ import { close, closeSync } from 'fs';
 	export default {
 		router,
 		created: function(){
-				let store = this.$store;
 
-				axios.get(process.env.VUE_APP_API_SOURCE+'/api/seasons', { })
-				.then(function(response){
-					let all_seasons = response.data.MRData.SeasonTable.Seasons.reverse();
-					store.commit('setSeasons', all_seasons);
-				})
-				.catch(function(error){
-				});
+				let seasons_list = function(){
+					let currentYear = new Date().getFullYear();
+					let yearList = [];
+					for(let year = 1950; year <= currentYear; year++){
+						yearList.push(year);
+					}
+					return yearList.reverse();
+				}
 
-				// watch for change on season list loading
-				this.$store.watch(
-				(state)=>{
-					return this.$store.state.f1data.seasons
-				},
-				(newValue, oldValue)=>{
-					let newYear = (Object.keys(this.$route.params).length > 0) ? this.$route.params.year : this.$store.state.f1data.seasons[0].season;
+				this.$store.commit('setSeasons', seasons_list());
+
+				let newYear = (Object.keys(this.$route.params).length > 0) ? this.$route.params.year : this.$store.state.f1data.seasons[0];
 					this.$store.commit('setSeasonSelect', newYear);
-				});
+
 		},
 		methods: {
 			getData: function(loadYear){				

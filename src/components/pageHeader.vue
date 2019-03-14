@@ -30,7 +30,7 @@
 				<label for="season-select">Select a Season</label>
 				<div class="season-select-wrapper">
 					<select id="season-select" v-model="viewOptions.seasonSelect" class="season-select">
-						<option v-for="season in f1data.seasons" v-bind="season.index" :value="season.season" :key="season.season">{{ season.season }}</option>
+						<option v-for="season in f1data.seasons" v-bind="season.index" :value="season" :key="season">{{ season }}</option>
 					</select>
 				</div>
 				

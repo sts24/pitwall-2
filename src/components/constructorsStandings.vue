@@ -44,7 +44,7 @@
 						<td>{{ i.positionText }}</td>
 						<td>
 							<a :href="i.Constructor.url" target="_blank">{{ i.Constructor.name }}</a>
-							<img :src="flagImgPath(i.Constructor.nationality)" class="nation-flag" />
+							<img :src="flagImgPath(i.Constructor.nationality)" :alt="i.Constructor.nationality" class="nation-flag" />
 						</td>
 						<td>{{ i.points }}</td>
 						<td>{{ i.wins }}</td>

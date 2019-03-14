@@ -94,12 +94,12 @@ export default {
 							<td v-if="gridDiff(car) == 0"></td>
 							<td>
 								<a :href="car.Driver.url" target="_blank">{{ car.Driver.givenName }} {{ car.Driver.familyName }}</a> 
-								<img :src="flagImgPath(car.Driver.nationality)" class="nation-flag" /></td>
+								<img :src="flagImgPath(car.Driver.nationality)" :alt="car.Driver.nationality" class="nation-flag" /></td>
 							<td>{{ car.grid }}</td>
 							<td>{{ car.number }}</td>
 							<td>
 								<a :href="car.Constructor.url" target="_blank">{{ car.Constructor.name }}</a>
-								<img :src="flagImgPath(car.Constructor.nationality)" class="nation-flag" />
+								<img :src="flagImgPath(car.Constructor.nationality)" :alt="car.Constructor.nationality" class="nation-flag" />
 							</td>
 							<td>{{ car.FastestLap ? car.FastestLap.Time.time : '' }}</td>
 							<td>{{ car.laps }}</td>

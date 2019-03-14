@@ -52,7 +52,7 @@
 						<td>{{ i.positionText }}</td>
 						<td>
 							<a :href="i.Driver.url" target="_blank">{{ i.Driver.givenName }} {{ i.Driver.familyName }}</a> 
-							<img :src="flagImgPath(i.Driver.nationality)" class="nation-flag" />
+							<img :src="flagImgPath(i.Driver.nationality)" :alt="i.Driver.nationality" class="nation-flag" />
 						</td>
 						<td>{{ constructorsList(i.Constructors) }}</td>
 						<td>{{ i.points }}</td>
