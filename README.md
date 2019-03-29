@@ -7,7 +7,7 @@ I am a big Formula 1 fan (yes, I am also an American, which nobody knows about F
 Visit my portfolio site: [smithscott.net](https://www.smithscott.net)  
 Email me: [hello@smithscott.net](mailto:hello@smithscott.net)
 
-**[View the Live Version of Pitwall](http://pitwall.smithscott.net)**
+**[View the Live Version of Pitwall](https://pitwall.netlify.com/)**
 
 ## Credits
 - F1 data from the [Ergast API](https://ergast.com/mrd/)
