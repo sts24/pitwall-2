@@ -46,7 +46,7 @@ import { close, closeSync } from 'fs';
 
 				apiEndpoints.forEach((apiData) => {
 
-					axios.get(process.env.VUE_APP_API_SOURCE+'/api/'+ apiData + '/' + loadYear)
+					axios.get('https://ergast.com/api/f1/' + loadYear + '/' + apiData + '.json?limit=1000')
 						.then(function(response){
 							let ajax_data = response.data.MRData;
 							
