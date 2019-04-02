@@ -107,12 +107,15 @@ export default {
 							<td>{{ car.points }}</td>
 						</tr>
 					</tbody>
+					<tfoot v-show="showAllResults !== true">
+						<tr>
+							<td colspan="10">
+								<button class="show-all-btn" v-on:click="showAllResults = true">Show Entire Results</button>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
-
-			<footer v-show="showAllResults !== true">
-				<button class="show-all-btn" v-on:click="showAllResults = true">Show Entire Results</button>
-			</footer>
 
 		</section>
 	
