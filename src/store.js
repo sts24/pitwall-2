@@ -28,6 +28,9 @@ export default new Vuex.Store({
     setTab(state,payload){ state.viewOptions.selectedTab = payload; },
   },
   actions: {
-
+    reverseSort(state) {
+      console.log(state.state);
+      state.state.f1data.races.reverse();
+    }
   },
 })

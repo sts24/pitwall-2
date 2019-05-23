@@ -145,3 +145,21 @@ a {
 		height: auto;
 	}
 }
+
+
+.button {
+	cursor: pointer;
+    display: inline-block;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: 0;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    background: $gray-dark;
+    color: white;
+
+    &:hover {
+        background-color: $gray-mid;
+    }
+
+}

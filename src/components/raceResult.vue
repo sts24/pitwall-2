@@ -1,5 +1,5 @@
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
 
@@ -11,13 +11,15 @@ export default {
 	]),
 	data: function () {
 		return {
-			showAllResults: false	
+			showAllResults: false,
+			sortNewestFirst: false
 		}
 	},
 	updated: function(){
 		this.viewOptions.loading = false;
 	},
 	methods: {
+		...mapActions([ 'reverseSort' ]),
 		gridDiff: function(car){
 
 			let gridDiff = (car.grid - car.position);
@@ -45,7 +47,16 @@ export default {
 		},
 		flagImgPath: function(nation){
 			return process.env.BASE_URL+'/nation-flags/'+nation.replace(' ','')+'.svg';
+		},
+		sortRaces: function(){
+			if(this.sortNewestFirst === true){
+				this.sortNewestFirst = false;
+			} else {
+				this.sortNewestFirst = true;
+			}
+			this.reverseSort();
 		}
+
 	}
 
 };
@@ -58,8 +69,12 @@ export default {
 <template>
 
 	<section class="content-block" v-if="f1data.races.length > 0">
-		<header>
+		<header class="races-header">
 			<h2>Race Results</h2>
+
+			<button class="button" v-on:click="sortRaces" v-show="sortNewestFirst == true">Sort By Oldest First</button>
+			<button class="button" v-on:click="sortRaces" v-show="sortNewestFirst == false">Sort By Newest First</button>
+
 		</header>
 
 		<section class="race-table" v-for="item in f1data.races" :key="item.date">
