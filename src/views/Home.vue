@@ -34,7 +34,6 @@ export default {
 			<header class="content-header content-block">
 				<h1>{{ viewOptions.seasonSelect }} Season</h1>
 			</header>
-
 			
 			<raceresult :key="'races-'+viewOptions.seasonSelect" v-show="viewOptions.selectedTab == 'races'"></raceresult>
 		
@@ -46,14 +45,11 @@ export default {
 				<constructorstandings :key="'constructors-'+viewOptions.seasonSelect"></constructorstandings>
 			</section>
 
-
 			<section class="overlay" v-show="viewOptions.loading == true">
 				<div class="loading-spinner"></div>
 			</section>
 
 		</main>
 
-		
-		
 	</div>
 </template>
