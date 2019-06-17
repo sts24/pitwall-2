@@ -32,9 +32,9 @@ export default new Vuex.Store({
     reverseSort(state) {
       state.state.f1data.races.reverse();
     },
-    getData: function(loadYear){				
-console.log(loadYear);
-			const apiEndpoints = [
+    getData({ commit }, loadYear){				
+
+      const apiEndpoints = [
 				'results',
 				'driverStandings',
 				'constructorStandings'
@@ -47,17 +47,17 @@ console.log(loadYear);
 						let ajax_data = response.data.MRData;
 						
 						if(apiData == 'results'){
-							this.commit('setRaces', ajax_data.RaceTable.Races );
+							commit('setRaces', ajax_data.RaceTable.Races );
 						}
 
 						if(apiData == 'driverStandings'){
 							let driversData = (ajax_data.StandingsTable.StandingsLists.length > 0) ? ajax_data.StandingsTable.StandingsLists[0].DriverStandings : [];
-							this.commit('setDrivers', driversData);
+							commit('setDrivers', driversData);
 						}
 						
 						if(apiData == 'constructorStandings'){
 							let constructorsData = (ajax_data.StandingsTable.StandingsLists.length > 0) ? ajax_data.StandingsTable.StandingsLists[0].ConstructorStandings : [];
-							this.commit('setConstructors', constructorsData);
+							commit('setConstructors', constructorsData);
 						}
 
 					})
