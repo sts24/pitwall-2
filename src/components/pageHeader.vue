@@ -3,10 +3,18 @@
 
 	export default {
 		name: 'pageheader',
-		computed: mapState([
-			'f1data',
-			'viewOptions'
-		]),
+		computed: {
+			...mapState([ 'f1data', 'viewOptions' ]),
+			selectSeason: {
+				get(){
+					return this.$store.state.viewOptions.seasonSelect;
+				},
+				set(newSeason){
+					this.$store.dispatch('getData', newSeason);
+				}
+			}
+			
+		},
 		methods: mapMutations([
 			'setTab'
 		])
@@ -29,7 +37,7 @@
 				
 				<label for="season-select">Select a Season</label>
 				<div class="season-select-wrapper">
-					<select id="season-select" v-model="viewOptions.seasonSelect" class="season-select">
+					<select id="season-select" v-model="selectSeason" class="season-select">
 						<option v-for="season in f1data.seasons" v-bind="season.index" :value="season" :key="season">{{ season }}</option>
 					</select>
 				</div>

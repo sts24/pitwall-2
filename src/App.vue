@@ -10,14 +10,15 @@
 <script>
 
 import router from './router'
-import { mapState, mapActions } from 'vuex'
 
 export default {
 	router,
 	created: function(){
+		const currentYear = new Date().getFullYear();
+
+		let loadYear = Object.keys(this.$route.params).length > 0 ? this.$route.params.year : currentYear;
 
 		let seasons_list = function(){
-			let currentYear = new Date().getFullYear();
 			let yearList = [];
 			for(let year = 1950; year <= currentYear; year++){
 				yearList.push(year);
@@ -29,15 +30,7 @@ export default {
 		this.$store.commit('setSeasons', seasons_list());
 
 		// get current season data on first call
-		this.$store.dispatch('getData', '2019');
-	},
-
-	watch: {
-		'$route': function(newData){
-			if(newData.name !== 'error'){
-				this.$store.commit('setSeasonSelect', this.$route.params.year);
-			}
-		}
+		this.$store.dispatch('getData', loadYear);
 	}
 }
 </script>
