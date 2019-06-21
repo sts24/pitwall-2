@@ -4,21 +4,24 @@ const fs = require('fs');
 function getRaceData(loadYear) {
 	return axios.get('https://ergast.com/api/f1/' + loadYear + '/results.json?limit=1000')
 		.then(response => {
-			return response.data;
+			let races = response.data.MRData.RaceTable.Races;
+			return races;
 		});
 }
 
 function getDriversData(loadYear) {
 	return axios.get('https://ergast.com/api/f1/' + loadYear + '/driverStandings.json?limit=1000')
 		.then(response => {
-			return response.data;
+			let driversData = (response.data.MRData.StandingsTable.StandingsLists.length > 0) ? response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings : [];
+			return driversData;
 		});
 }
 
 function getConstructorsData(loadYear) {
 	return axios.get('https://ergast.com/api/f1/' + loadYear + '/constructorStandings.json?limit=1000')
 		.then(response => {
-			return response.data;
+			let constructorsData = (response.data.MRData.StandingsTable.StandingsLists.length > 0) ? response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings : [];
+			return constructorsData;
 		});
 }
 
