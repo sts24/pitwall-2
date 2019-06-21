@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import router from './router'
+import fs from 'fs';
 
 Vue.use(Vuex)
 
@@ -33,33 +34,50 @@ export default new Vuex.Store({
     reverseSort(state) {
       state.state.f1data.races.reverse();
     },
-    getData({ commit }, loadYear) {	
+    getData({ commit }, loadYear) {
+
+      const currentYear = new Date().getFullYear();
       
       router.push({ name: 'season', params: { 'year': loadYear } });
       commit('setLoading', true);
 
       function getRaceData(loadYear) {
-        return axios.get('https://ergast.com/api/f1/' + loadYear + '/results.json?limit=1000')
-          .then(response => {
-            let races = response.data.MRData.RaceTable.Races;
-            return races;
-          });
+        if (loadYear < currentYear) {
+          return axios.get('/data-cache/' + loadYear + '-races.json')
+            .then(response => { return response.data; });
+        } else {
+          return axios.get('https://ergast.com/api/f1/' + loadYear + '/results.json?limit=1000')
+            .then(response => {
+              let races = response.data.MRData.RaceTable.Races;
+              return races;
+            });
+        }
       }
 
       function getDriversData(loadYear) {
-        return axios.get('https://ergast.com/api/f1/' + loadYear + '/driverStandings.json?limit=1000')
-          .then(response => {
-            let driversData = (response.data.MRData.StandingsTable.StandingsLists.length > 0) ? response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings : [];
-            return driversData;
-          });
+        if (loadYear < currentYear) {
+          return axios.get('/data-cache/' + loadYear + '-drivers.json')
+            .then(response => { return response.data; });
+        } else {
+          return axios.get('https://ergast.com/api/f1/' + loadYear + '/driverStandings.json?limit=1000')
+            .then(response => {
+              let driversData = (response.data.MRData.StandingsTable.StandingsLists.length > 0) ? response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings : [];
+              return driversData;
+            });
+        }
       }
 
       function getConstructorsData(loadYear) {
-        return axios.get('https://ergast.com/api/f1/' + loadYear + '/constructorStandings.json?limit=1000')
-          .then(response => {
-            let constructorsData = (response.data.MRData.StandingsTable.StandingsLists.length > 0) ? response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings : [];
-            return constructorsData;
-          });
+        if (loadYear < currentYear) {
+          return axios.get('/data-cache/' + loadYear + '-constructors.json')
+            .then(response => { return response.data; });
+        } else {
+          return axios.get('https://ergast.com/api/f1/' + loadYear + '/constructorStandings.json?limit=1000')
+            .then(response => {
+              let constructorsData = (response.data.MRData.StandingsTable.StandingsLists.length > 0) ? response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings : [];
+              return constructorsData;
+            });
+        }
       }
 
       axios.all([
