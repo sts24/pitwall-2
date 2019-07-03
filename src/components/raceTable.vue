@@ -1,10 +1,14 @@
 <script>
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
+import formatDate from '@/components/formatDate.vue';
 
 export default {
 
 	name: 'raceTable',
 	props: ['item'],
+	components: {
+		formatDate
+	},
 	computed: mapState([
 		'f1data',
 		'viewOptions'
@@ -15,12 +19,6 @@ export default {
 		}
 	},
 	methods: {
-		formatDate: function(raceDate){
-			let months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-			let raceUTC = new Date(raceDate);
-
-			return months[raceUTC.getMonth()] + ' ' + raceUTC.getDate() + ', ' + raceUTC.getFullYear();
-		},
 		gridDiff: function(car){
 			let gridDiff = (car.grid - car.position);
 			return gridDiff;
@@ -56,7 +54,7 @@ export default {
 		<header>
 			<h2>{{ item.raceName }}</h2>
 			<h3><a :href="item.Circuit.url" target="_blank">{{ item.Circuit.circuitName }}</a></h3>
-			<small>Round {{ item.round }} • {{ item.Circuit.Location.locality }}, {{ item.Circuit.Location.country }} • {{ formatDate(item.date) }} • <a :href="item.url" target="_blank">Read on Wikipedia</a></small>
+			<small>Round {{ item.round }} • {{ item.Circuit.Location.locality }}, {{ item.Circuit.Location.country }} • <formatDate :date="item.date" /> • <a :href="item.url" target="_blank">Read on Wikipedia</a></small>
 		</header>
 
 		<div class="chart-wrap">
@@ -96,13 +94,7 @@ export default {
 						<td>{{ car.points }}</td>
 					</tr>
 				</tbody>
-				<tfoot v-show="showAllResults !== true">
-					<tr>
-						<td colspan="10">
-							<button class="show-all-btn" v-on:click="showAllResults = true">Show Entire Results</button>
-						</td>
-					</tr>
-				</tfoot>
+				
 			</table>
 		</div>
 

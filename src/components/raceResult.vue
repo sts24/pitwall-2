@@ -1,13 +1,15 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import raceTable from '@/components/raceTable.vue';
+import formatDate from '@/components/formatDate.vue';
 
 export default {
 
 	name: 'raceresult',
 	props: ['item'],
 	components: {
-		raceTable
+		raceTable,
+		formatDate
 	},
 	computed: mapState([
 		'f1data',
@@ -27,8 +29,12 @@ export default {
 		...mapActions([ 'reverseSort' ]),
 		
 		raceSelect(roundID){
-			console.log(roundID);
 			this.round = roundID;
+		},
+
+		selectedRound(roundID){
+			let selected = (roundID == this.round) ? 'selected-round' : '';
+			return selected;
 		}
 
 	}
@@ -45,8 +51,8 @@ export default {
 	<section class="race-grid" v-if="f1data.races.length > 0">
 		<nav class="race-select-col">
 			<ul>
-				<li v-for="(item, index) in f1data.races">
-					<button class="race-select-button" @click="raceSelect(index)"><strong>{{ item.raceName }}</strong><br />{{ item.date }}</button>
+				<li v-for="(item, index) in f1data.races" :key="item.date" :class="selectedRound(index)">
+					<button class="race-select-button" @click="raceSelect(index)"><strong>{{ item.raceName }}</strong><br /><formatDate :date="item.date" /></button>
 				</li>
 			</ul>
 		</nav>
