@@ -30,6 +30,10 @@ export default {
 		
 		raceSelect(roundID){
 			this.round = roundID;
+
+			if(window.innerWidth < 1400){
+				document.querySelector('.race-table').scrollIntoView({ behavior: 'smooth' });
+			}
 		},
 
 		selectedRound(roundID){
