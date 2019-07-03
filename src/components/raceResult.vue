@@ -16,7 +16,8 @@ export default {
 	data: function () {
 		return {
 			showAllResults: false,
-			sortNewestFirst: false
+			sortNewestFirst: false,
+			round: 0
 		}
 	},
 	updated: function(){
@@ -25,41 +26,32 @@ export default {
 	methods: {
 		...mapActions([ 'reverseSort' ]),
 		
-		sortRaces: function(){
-			if(this.sortNewestFirst === true){
-				this.sortNewestFirst = false;
-			} else {
-				this.sortNewestFirst = true;
-			}
-			this.reverseSort();
+		raceSelect(roundID){
+			console.log(roundID);
+			this.round = roundID;
 		}
 
 	}
 
 };
 
-
-
 </script>
 
 
 <template>
+	
+	
 
-	<section class="content-block" v-if="f1data.races.length > 0">
-		<header class="races-header">
-			<h2>Race Results</h2>
-
-			<button class="button" v-on:click="sortRaces" v-show="sortNewestFirst == true">Sort By Oldest First</button>
-			<button class="button" v-on:click="sortRaces" v-show="sortNewestFirst == false">Sort By Newest First</button>
-
-		</header>
-
-		<raceTable v-for="item in f1data.races" :item="item" :key="item.date" />	
-
+	<section class="race-grid" v-if="f1data.races.length > 0">
+		<nav class="race-select-col">
+			<ul>
+				<li v-for="(item, index) in f1data.races">
+					<button class="race-select-button" @click="raceSelect(index)"><strong>{{ item.raceName }}</strong><br />{{ item.date }}</button>
+				</li>
+			</ul>
+		</nav>
+		<raceTable :item="f1data.races[round]" />	
 	</section>
 	
-	<section class="overlay" v-else>
-		<p class="message">No race data availible for this season.</p>
-	</section>
 
 </template>

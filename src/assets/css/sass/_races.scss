@@ -2,6 +2,49 @@
 	margin-bottom: 3rem;
 }
 
+.race-grid {
+	display: grid;
+	grid-template-columns: 20% 1fr;
+	height: 100%;
+	margin: 0 2rem;
+	grid-gap: 2rem;
+}
+
+.race-select-col {
+	background: $gray-light;
+
+	> ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		counter-reset: round;
+		border-top: 1px solid $gray-mid;
+
+		> li {
+			padding: 0;
+			margin: 0;
+			border-bottom: 1px solid $gray-mid;
+
+			&::before {
+				counter-increment: round;
+				content: counter(round);
+				display: inline-block;
+			}
+		}
+	}
+}
+
+.race-select-button {
+	appearance: none;
+	border: 0;
+	background: none;
+	font-size: 1rem;
+	cursor: pointer;
+	text-align: left;
+	padding: 0.5rem 1rem;
+
+}
+
 
 .race-table {
 	margin-bottom: 3rem;

@@ -1,11 +1,8 @@
 .chart {
-	//width: 100%;
 	border-spacing: 0;
 	box-shadow: 0 0.5rem 2rem rgba(black,0.25);
 	background-color: white;
-	
-	//border: 3px solid $red;
-	
+		
 	thead {
 		background: $red_grad;
 		background-attachment: fixed;
@@ -19,11 +16,7 @@
 	}
 	
 	tbody {
-		
-		tr:nth-child(n+11){
-			display: none;
-		}
-
+	
 		tr:nth-child(even){
 			background: lightgray;
 		}
@@ -40,7 +33,6 @@
 		}
 	}
 	
-	&.show-all tbody tr { display: table-row; }
 	
 	@media (min-width: 768px){
 		
