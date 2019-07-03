@@ -9,10 +9,9 @@ export default {
 	components: {
 		formatDate
 	},
-	computed: mapState([
-		'f1data',
-		'viewOptions'
-	]),
+	computed: {
+		...mapState([ 'f1data', 'viewOptions' ])
+	},
 	data: function () {
 		return {
 			showAllResults: false
@@ -30,13 +29,18 @@ export default {
 				return '⬆︎' + gridDiff;
 			} else if(gridDiff < 0){
 				return '⬇︎' + Math.abs(gridDiff);
-			} else {
-				//return gridStart;
 			}
 
 		},
 		flagImgPath: function(nation){
 			return process.env.BASE_URL+'/nation-flags/'+nation.replace(' ','')+'.svg';
+		},
+		gridStart: function(gridStart){
+			if(gridStart == 0){
+				return 'Pits'
+			} else {
+				return gridStart
+			}
 		}
 
 	}
@@ -82,7 +86,7 @@ export default {
 						<td>
 							<a :href="car.Driver.url" target="_blank">{{ car.Driver.givenName }} {{ car.Driver.familyName }}</a> 
 							<img :src="flagImgPath(car.Driver.nationality)" :alt="car.Driver.nationality" class="nation-flag" /></td>
-						<td>{{ car.grid }}</td>
+						<td>{{ gridStart(car.grid) }}</td>
 						<td>{{ car.number }}</td>
 						<td>
 							<a :href="car.Constructor.url" target="_blank">{{ car.Constructor.name }}</a>

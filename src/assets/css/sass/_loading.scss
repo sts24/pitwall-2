@@ -11,7 +11,7 @@
 	
 	animation: spin 1s infinite linear;
 
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		width: 6em;
 		height: 6em;
 	}

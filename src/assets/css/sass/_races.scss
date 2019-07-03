@@ -4,26 +4,33 @@
 
 .race-grid {
 	display: grid;
-	grid-template-columns: 20% 1fr;
+	grid-template-columns: 100%;
+	align-items: start;
+	margin: 1rem;
+	
+	grid-gap: 3rem;
 
-	margin: 0 2rem;
-	grid-gap: 2rem;
+	@media (min-width: $mq-medium){
+		margin: 0 3rem;
+		grid-template-columns: minmax(auto,20%) 2fr;
+	}
 }
 
 .race-select-col {
 	background: $gray-light;
+	box-shadow: 0 0.5rem 2rem rgba(black,0.25);
 
 	> ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		counter-reset: round;
-		border-top: 1px solid $gray-mid;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(20rem,1fr));
 
 		> li {
 			padding: 0;
 			margin: 0;
-			border-bottom: 1px solid $gray-mid;
 			display: flex;
 			align-items: center;
 
@@ -36,6 +43,14 @@
 				width: 2ch;
 			}
 
+			&:hover {
+				background: $gray-mid;
+
+				&::before {
+					color: white;
+				}
+			}
+
 			&.selected-round {
 				background: $red;
 				color: white;
@@ -46,6 +61,7 @@
 
 .race-select-button {
 	display: block;
+	flex: 1 1 auto;
 	appearance: none;
 	border: 0;
 	background: none;
@@ -90,7 +106,7 @@
 		text-align: center;
 	}
 	
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		header h2 { font-size: 2rem; }
 		header h3 { font-size: 1.25rem; margin: 0 0 0.5rem 0; }
 	}

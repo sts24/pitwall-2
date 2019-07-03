@@ -47,12 +47,11 @@
 					<li><button class="site-nav-button" :class="{'selected': viewOptions.selectedTab === 'drivers'}" v-on:click="setTab('drivers')">Driver's Championship</button></li>
 					<li><button class="site-nav-button" :class="{'selected': viewOptions.selectedTab === 'constructors'}" v-on:click="setTab('constructors')">Constructor's Championship</button></li>
 				</ul>
-
-				<div class="info">
-					<p>Pitwall was created by <a href="https://www.smithscott.net" target="_blank">Scott Smith</a>. Learn more about this project <a href="https://github.com/sts24/pitwall-2" target="_blank">on the GitHub page.</a></p>
-				</div>
-
 			</nav>
+
+			<div class="info">
+				<p>Pitwall was created by <a href="https://www.smithscott.net" target="_blank">Scott Smith</a>. Learn more about this project <a href="https://github.com/sts24/pitwall-vue" target="_blank">on the GitHub page.</a></p>
+			</div>
 		</div>
 	</header>
 

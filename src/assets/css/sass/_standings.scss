@@ -1,6 +1,6 @@
 .standings {
 	
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 1rem;
@@ -17,7 +17,7 @@
 		}
 	}
 	
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		header { margin: 0 0 0.5rem 0; }
 	}
 }

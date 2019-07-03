@@ -1,4 +1,4 @@
-@import 'sass/_prepend';
+@import 'sass/__prepend';
 
 * { box-sizing: border-box; }
 
@@ -9,7 +9,7 @@ body {
 	font-size: 14px;
 	color: $gray-dark;
 
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		font-size: 16px;
 	}
 }
@@ -23,10 +23,10 @@ a {
 }
 
 #page {
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		display: grid;
 		grid-gap: 0;
-		grid-template-columns: minmax(200px,20vw) auto;
+		grid-template-columns: $header-width auto;
 		grid-template-rows: minmax(100vh,auto);
 
 		grid-template-areas: 'header content';
@@ -42,7 +42,7 @@ a {
 .content-area {
 	position: relative;
 
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		grid-area: content;
 		background-image: url('./assets/images/car-bg.jpg');
 		background-size: auto 480px;
@@ -55,7 +55,7 @@ a {
 .content-block {
 	margin: 1rem;
 
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		
 		margin: 2rem;
 	}

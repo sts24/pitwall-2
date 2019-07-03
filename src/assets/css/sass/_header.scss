@@ -4,12 +4,11 @@
 	color: white;
 
 	.header-contents {
-		padding: 1rem 1rem 0 1rem;
+		padding: 1rem;
 
-		@media (min-width: 768px){
+		@media (min-width: $mq-small){
 			position: fixed;
-			width: 20vw;
-			min-width: 200px;
+			width: $header-width;
 			padding: 1rem;
 		}	
 	}
@@ -19,16 +18,17 @@
 	
 	.site-title {
 		width: 100%;
+		max-width: 300px;
 		height: auto;
 		margin: 0 0 2rem 0;
 
-		@media (max-width: 767px){
-			max-width: 200px;
+		@media (max-width: $mq-small){
+			max-width: $header-width;
 			margin-bottom: 1rem;
 		}
 	}
 
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		background-image: url('./assets/images/checkerd-flag.png');
 		background-position: left bottom;
 		background-size: auto;

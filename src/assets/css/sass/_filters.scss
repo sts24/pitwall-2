@@ -10,7 +10,7 @@
 		margin-left: 0.5rem;
 	}
 	
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		label { font-size: 1.25rem; }
 	}
 }
@@ -52,7 +52,7 @@
 		}
 	}
 	
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
 		background-size: 1.25rem auto;
 		
 		select { font-size: 1.25rem; }

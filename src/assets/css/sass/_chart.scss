@@ -2,6 +2,7 @@
 	border-spacing: 0;
 	box-shadow: 0 0.5rem 2rem rgba(black,0.25);
 	background-color: white;
+	width: 100%;
 		
 	thead {
 		background: $red_grad;
@@ -34,7 +35,8 @@
 	}
 	
 	
-	@media (min-width: 768px){
+	@media (min-width: $mq-small){
+		widt: auto;
 		
 		caption {
 			padding: 0 0 0.5rem 0;
@@ -42,22 +44,22 @@
 	}
 	
 	
-	@media (max-width: 767px){
+	@media (max-width: $mq-small){
 			border: 0 none;
 	}
 	
 }
 
-@media (max-width: 767px){
+@media (max-width: $mq-small){
 
 	.chart-wrap {
 		overflow-x: scroll;
 		-webkit-overflow-scrolling: touch;
-		//width: 80vw;
 		border: 3px solid $red;
 	}
 
 }
+
 
 
 .show-all-btn {
