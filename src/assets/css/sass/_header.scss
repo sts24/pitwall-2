@@ -5,12 +5,6 @@
 
 	.header-contents {
 		padding: 1rem;
-
-		@media (min-width: $mq-small){
-			position: fixed;
-			width: $header-width;
-			padding: 1rem;
-		}	
 	}
 
 	background-color: rgb(10,10,10);

@@ -26,7 +26,7 @@ a {
 	@media (min-width: $mq-small){
 		display: grid;
 		grid-gap: 0;
-		grid-template-columns: $header-width auto;
+		grid-template-columns: minmax(20vw,$header-width) auto;
 		grid-template-rows: minmax(100vh,auto);
 
 		grid-template-areas: 'header content';
@@ -41,6 +41,7 @@ a {
 
 .content-area {
 	position: relative;
+	padding-bottom: 3rem;
 
 	@media (min-width: $mq-small){
 		grid-area: content;
@@ -60,7 +61,7 @@ a {
 		margin: 2rem;
 	}
 
-	@media (min-width: 1200px){
+	@media (min-width: $mq-medium){
 		max-width: 80%;
 		margin: 3rem;
 	}

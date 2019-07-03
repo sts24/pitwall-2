@@ -12,7 +12,7 @@
 
 	@media (min-width: $mq-medium){
 		margin: 0 3rem;
-		grid-template-columns: minmax(auto,20%) 2fr;
+		grid-template-columns: auto 1fr;
 	}
 }
 
@@ -26,7 +26,7 @@
 		padding: 0;
 		counter-reset: round;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(20rem,1fr));
+		grid-template-columns: repeat(auto-fit, minmax(15rem,1fr));
 
 		> li {
 			padding: 0;
