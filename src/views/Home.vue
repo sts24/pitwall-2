@@ -4,7 +4,7 @@ import constructorstandings from '@/components/constructorsStandings.vue';
 import driverstandings from '@/components/driversStandings.vue';
 import raceresult from '@/components/raceResult.vue';
 import pageHeader from '@/components/pageHeader.vue';
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
 	name: 'home',
@@ -14,10 +14,21 @@ export default {
 		raceresult,
 		pageHeader
 	},
-	computed: mapState([
-		'f1data',
-		'viewOptions'
+	computed: {
+		...mapState([ 'f1data', 'viewOptions' ]),
+		selectSeason: {
+			get(){
+				return this.$store.state.viewOptions.seasonSelect;
+			},
+			set(newSeason){
+				this.$store.dispatch('getData', newSeason);
+			}
+		}
+	},
+	methods: mapMutations([
+		'setTab'
 	])
+		
 }
 
 </script>
@@ -29,11 +40,22 @@ export default {
 	<div id="page">
 		<pageHeader></pageHeader>
 
-		<main class="content-area">
+		<main class="grid-area">
 
-			<header class="content-header content-block">
-				<h1>{{ viewOptions.seasonSelect }} Season</h1>
-			</header>
+			<nav class="type-select">
+				<label for="season-select">Select a Season</label>
+				<div class="season-select-wrapper">
+					<select id="season-select" v-model="selectSeason" class="season-select">
+						<option v-for="season in f1data.seasons" v-bind="season.index" :value="season" :key="season">{{ season }}</option>
+					</select>
+				</div>
+				
+				<ul class="site-nav">
+					<li><button class="site-nav-button" :class="{'selected': viewOptions.selectedTab === 'races'}" v-on:click="setTab('races')">Race Results</button></li>
+					<li><button class="site-nav-button" :class="{'selected': viewOptions.selectedTab === 'drivers'}" v-on:click="setTab('drivers')">Driver's Championship</button></li>
+					<li><button class="site-nav-button" :class="{'selected': viewOptions.selectedTab === 'constructors'}" v-on:click="setTab('constructors')">Constructor's Championship</button></li>
+				</ul>
+			</nav>
 			
 			<raceresult :key="'races-'+viewOptions.seasonSelect" v-if="viewOptions.selectedTab == 'races'"></raceresult>
 		

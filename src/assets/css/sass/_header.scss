@@ -1,54 +1,27 @@
-.header {
-	grid-area: header;
+.site-header {
 	position: relative;
 	color: white;
-
-	.header-contents {
-		padding: 1rem;
-	}
-
-	background-color: rgb(10,10,10);
-	
-	
-	.site-title {
-		width: 100%;
-		max-width: 300px;
-		height: auto;
-		margin: 0 0 2rem 0;
-
-		@media (max-width: $mq-small){
-			max-width: $header-width;
-			margin-bottom: 1rem;
-		}
-	}
-
-	@media (min-width: $mq-small){
-		background-image: url('./assets/images/checkerd-flag.png');
-		background-position: left bottom;
-		background-size: auto;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-	}
-}
-
-
-.header-desc {
-	max-width: 80ch;
-	margin: auto;
-	
-	a {
-		color: $red;
-	}
-	
-	p {
-		line-height: 1.5em;
-	}
-}
-
-.info {
-	font-size: 1em;
+	background-color: $slate;
+	display: flex;
+	justify-content: center;
 
 	a {
 		color: lighten($link-color,25%);
+	}
+}
+
+.header-contents {
+	padding: 1rem;
+}
+
+.site-title {
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+	margin: 0;
+
+	@media (max-width: $mq-small){
+		max-width: $header-width;
+		margin-bottom: 1rem;
 	}
 }

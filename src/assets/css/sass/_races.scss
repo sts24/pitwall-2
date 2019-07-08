@@ -1,24 +1,16 @@
-.races-header {
-	margin-bottom: 3rem;
-}
-
 .race-grid {
 	display: grid;
 	grid-template-columns: 100%;
-	align-items: start;
-	margin: 1rem;
-	
-	grid-gap: 3rem;
+	grid-gap: 0;
 
 	@media (min-width: $mq-medium){
-		margin: 0 3rem;
 		grid-template-columns: auto 1fr;
 	}
 }
 
 .race-select-col {
 	background: $gray-light;
-	box-shadow: 0 0.5rem 2rem rgba(black,0.25);
+	border-right: 1px solid $slate;
 
 	> ul {
 		list-style: none;
@@ -77,7 +69,6 @@
 
 
 .race-table {
-	margin-bottom: 3rem;
 
 	header {
 		margin-bottom: 0.5rem;

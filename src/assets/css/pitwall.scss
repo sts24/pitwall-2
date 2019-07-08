@@ -22,73 +22,11 @@ a {
 	}
 }
 
-#page {
-	@media (min-width: $mq-small){
-		display: grid;
-		grid-gap: 0;
-		grid-template-columns: minmax(20vw,$header-width) auto;
-		grid-template-rows: minmax(100vh,auto);
 
-		grid-template-areas: 'header content';
-
-		justify-items: stretch;
-		align-items: stretch;
-	}
-}
 
 @import 'sass/_header';
-@import 'sass/_filters';
-
-.content-area {
-	position: relative;
-	padding-bottom: 3rem;
-
-	@media (min-width: $mq-small){
-		grid-area: content;
-		background-image: url('./assets/images/car-bg.jpg');
-		background-size: auto 480px;
-		background-position: right bottom;
-		background-repeat: no-repeat;
-		background-attachment: fixed;
-	}
-}
-
-.content-block {
-	margin: 1rem;
-
-	@media (min-width: $mq-small){
-		
-		margin: 2rem;
-	}
-
-	@media (min-width: $mq-medium){
-		max-width: 80%;
-		margin: 3rem;
-	}
-}
-
-
-.content-header {
-	h1 {
-		font-size: 3em;
-		color: $red;
-	}
-}
-
-.message {
-	text-align: center;
-	font-weight: bold;
-	font-size: rem(21);
-}
-
-.nation-flag {
-	width: auto;
-	height: 1em;
-	margin-left: 1ch;
-	vertical-align: middle;
-	box-shadow: 0 0 1px rgba(black,0.5);
-}
-
+@import 'sass/_layout';
+@import 'sass/_type-select';
 @import 'sass/_chart';
 @import 'sass/_races';
 @import 'sass/_standings';

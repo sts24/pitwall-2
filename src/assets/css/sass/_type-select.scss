@@ -1,0 +1,92 @@
+.type-select {
+	background: $gray-light;
+	border-right: 1px solid $slate;
+
+	label {
+		display: block;
+		margin: 1rem 1rem 0.25rem 1rem;
+		font-weight: bold;
+	}
+}
+
+
+
+.season-select-wrapper {
+	width: auto;
+	margin: 0 1rem;
+	
+	font-weight: bold;
+	padding: 0;
+	border: 0;
+	background-color: $red;
+	
+	
+	background-image: url('./assets/images/arrow-down.svg');
+	background-size: 1rem auto;
+	background-position: right 1rem center;
+	background-repeat: no-repeat;
+	
+	
+	select {
+		font-size: 1rem;
+		font-weight: bold;
+		appearance: none;
+		background: transparent;
+		border: 0;
+		padding: 0.5rem;
+		margin: 0;
+		width: 100%;
+		color: white;
+		cursor: pointer;
+		
+		&:focus {
+			outline: 0;
+			border: 0;
+		}
+	}
+	
+	@media (min-width: $mq-small){
+		background-size: 1.25rem auto;
+		
+		select { font-size: 1.25rem; }
+	}
+}
+
+
+
+.site-nav {
+    padding: 0;
+    margin: 2rem 0;
+    list-style: none;
+
+    > li {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+.site-nav-button {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    font-size: 1.25em;
+    font-weight: bold;
+    border: 0;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    background: rgba(white,0.1);
+    color: $gray-dark;
+    text-align: left;
+
+    &:hover {
+        background: rgba(white,0.4);
+    }
+
+    &.selected {
+		background: $red_grad;
+		color: white;
+    }
+
+    
+}
