@@ -35,17 +35,17 @@ export default {
 				<h1>{{ viewOptions.seasonSelect }} Season</h1>
 			</header>
 			
-			<raceresult :key="'races-'+viewOptions.seasonSelect" v-show="viewOptions.selectedTab == 'races'"></raceresult>
+			<raceresult :key="'races-'+viewOptions.seasonSelect" v-if="viewOptions.selectedTab == 'races'"></raceresult>
 		
-			<section class="content-block" v-show="viewOptions.selectedTab == 'drivers'">
+			<section class="content-block" v-if="viewOptions.selectedTab == 'drivers'">
 				<driverstandings :key="'drivers-'+viewOptions.seasonSelect"></driverstandings>
 			</section>
 
-			<section class="content-block" v-show="viewOptions.selectedTab == 'constructors'">
+			<section class="content-block" v-if="viewOptions.selectedTab == 'constructors'">
 				<constructorstandings :key="'constructors-'+viewOptions.seasonSelect"></constructorstandings>
 			</section>
 
-			<section class="overlay" v-show="viewOptions.loading == true">
+			<section class="overlay" v-if="viewOptions.loading == true">
 				<div class="loading-spinner"></div>
 			</section>
 
