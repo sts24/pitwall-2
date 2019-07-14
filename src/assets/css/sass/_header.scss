@@ -12,13 +12,20 @@
 
 .header-contents {
 	padding: 1rem;
+	text-align: center;
+}
+
+.header-info {
+	p {
+		margin: 0;
+	}
 }
 
 .site-title {
 	width: 100%;
-	max-width: 300px;
+	max-width: 400px;
 	height: auto;
-	margin: 0;
+	margin: 0 auto 1rem auto;
 
 	@media (max-width: $mq-small){
 		max-width: $header-width;
