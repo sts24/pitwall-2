@@ -59,13 +59,9 @@ export default {
 			
 			<raceresult :key="'races-'+viewOptions.seasonSelect" v-if="viewOptions.selectedTab == 'races'"></raceresult>
 		
-			<section class="content-block" v-if="viewOptions.selectedTab == 'drivers'">
-				<driverstandings :key="'drivers-'+viewOptions.seasonSelect"></driverstandings>
-			</section>
+			<driverstandings v-if="viewOptions.selectedTab == 'drivers'" :key="'drivers-'+viewOptions.seasonSelect"></driverstandings>
 
-			<section class="content-block" v-if="viewOptions.selectedTab == 'constructors'">
-				<constructorstandings :key="'constructors-'+viewOptions.seasonSelect"></constructorstandings>
-			</section>
+			<constructorstandings v-if="viewOptions.selectedTab == 'constructors'" :key="'constructors-'+viewOptions.seasonSelect"></constructorstandings>
 
 			<section class="overlay" v-if="viewOptions.loading == true">
 				<div class="loading-spinner"></div>
